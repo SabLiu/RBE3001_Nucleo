@@ -32,7 +32,7 @@ HIDSimplePacket coms;      // HID packet handlers
 
 // The following array contains the "home" positions (in encoder ticks) for each
 // of the robot's joints 
-float homePosition[3] = {0,0,0};
+float homePosition[3] = {-992, -1034.5, 2021.2};
 
 void runPid() {
 	// update all positions fast and together
@@ -119,7 +119,7 @@ int main() {
 	/*
 	 * ======= PART 2b: Initialize HID communication =============================
 	 * In this section we instatiate objects that handle the communication between
-	 * this firmware and MATLAB. Each of thess objects implements a server that responds
+	 * this firmware and MATLAB. Each of these objects implements a server that responds
 	 * to commands sent over HID. During RBE3001, you will be asked to
 	 * implement your own communication servers. To instantiate a new server, use the
 	 * template below:
@@ -133,7 +133,8 @@ int main() {
 	 *            source file
 	 */
 
-	coms.attach(new PidServer(pid, DOFs));
+//	coms.attach(new PidServer(pid, DOFs));
+	coms.attach(new StatusServer(pid, DOFs));
 	//coms.attach(new PidConfigServer(pid, DOFs));
 
 #ifdef DEBUG_
@@ -167,7 +168,7 @@ int main() {
 			printf("\r\nEncoder Value = %f , %f , %f", pid[0]->GetPIDPosition(),
 					pid[1]->GetPIDPosition(), pid[2]->GetPIDPosition());
 
-			// print load cell readings
+//			 print load cell readings
 			printf(" Setpoint = %f , %f , %f", pid[0]->state.SetPoint,
 					pid[1]->state.SetPoint, pid[2]->state.SetPoint);
 
