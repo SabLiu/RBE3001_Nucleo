@@ -25,13 +25,14 @@
 #ifndef RBE3001_STATUS_SERVER
 #define RBE3001_STATUS_SERVER
 
+
 #include <PID_Bowler.h>
 #include <PacketEvent.h>
 #include "../drivers/MyPid.h"
 #include <cmath>              // needed for std::abs
 
 //#define PID_SERVER_ID 01      // identifier for this server
-#define STATUS_SERVER_ID 01      // identifier for this server
+#define STATUS_SERVER_ID 02      // identifier for this server
 
 /**
  *  @brief Class that receives setpoints through HID and sends them to
