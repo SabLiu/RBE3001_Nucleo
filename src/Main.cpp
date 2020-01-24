@@ -20,7 +20,7 @@
 #define  DOFs  3     // this macro defines the number of joints of the robotic arm
 //#define  DUMMYMODE   // this macro selects the running mode - see instructions above
 
-#define  DEBUG_      // if defined, this macro enables the printing of debug
+//#define  DEBUG_      // if defined, this macro enables the printing of debug
 // statements to the serial port - which can be read with PUTTY
 
 /*
@@ -133,7 +133,7 @@ int main() {
 	 *            source file
 	 */
 
-//	coms.attach(new PidServer(pid, DOFs));
+	coms.attach(new PidServer(pid, DOFs));
 	coms.attach(new StatusServer(pid, DOFs));
 	//coms.attach(new PidConfigServer(pid, DOFs));
 
