@@ -14,19 +14,17 @@
  *               data to MATLAB for plotting.
  */
 void StatusServer::event(float * packet){
-
-  /*
-   * ======= PART 1: Decode input packet (which may be empty) ==
-   */
-	if (packet[0] == 1){
-		// run CALIBRATION COMMAND
-		// Send the encoder values from STATUS to Nucleo
-		// update global variable with offsets
-//		homePosition[0] = myPidObjects[0]->GetPIDPosition();
-
-	}
-	else{
-	// ELSE IF PACKET IS ALL 0S, SEND STATUS
+/*
+ * If input packet is all 0s, then run status command
+ * If first element in packet is 1, then run calibration command
+ */
+//	if (packet[0] == 1){	// run CALIBRATION COMMAND
+//		// reset our home position to the new position
+//		for (int i = 0; i < myPumberOfPidChannels; i++){
+//			myPidObjects[i]->pidReset(myPidObjects[i]->GetPIDPosition());
+//		}
+//	}
+//	else{
 		uint8_t * buff = (uint8_t *) packet;
 
   // re-initialize the packet to all zeros
@@ -39,7 +37,6 @@ void StatusServer::event(float * packet){
    */
   for(int i = 0; i < myPumberOfPidChannels; i++)
     {
-	  // for lab 1 we first hardcode these 2 values
        position = myPidObjects[i]->GetPIDPosition();
        velocity = myPidObjects[i]->getVelocity();
        torque   = myPidObjects[i]->loadCell->read();
@@ -48,5 +45,5 @@ void StatusServer::event(float * packet){
       packet[(i*3)+1] = velocity;
       packet[(i*3)+2] = torque;
     }
-}
+//}
 }
