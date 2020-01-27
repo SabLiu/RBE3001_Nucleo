@@ -32,7 +32,7 @@
 #include <cmath>              // needed for std::abs
 
 //#define PID_SERVER_ID 01      // identifier for this server
-#define STATUS_SERVER_ID 02      // identifier for this server
+#define STATUS_SERVER_ID 10      // identifier for this server
 
 /**
  *  @brief Class that receives setpoints through HID and sends them to
