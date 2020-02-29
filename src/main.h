@@ -20,6 +20,7 @@
 #include "coms/DummyServer.h"
 #include "coms/StatusServer.h"
 #include "coms/PidConfigServer.h"
+#include "coms/GripperServer.h"
 
 
 // DEFINES
