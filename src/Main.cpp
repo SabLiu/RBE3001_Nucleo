@@ -29,7 +29,6 @@
 Ticker pidTimer;           // implements a timer
 static PIDimp * pid[DOFs]; // pointer to PID controllers (one for each link)
 HIDSimplePacket coms;      // HID packet handlers
-
 // The following array contains the "home" positions (in encoder ticks) for each
 // of the robot's joints 
 float homePosition[3] = {-1005.604, -974.835, 1965.664};
@@ -79,6 +78,7 @@ int main() {
 			new AnalogIn(LOAD_2));  // mosi, miso, sclk, cs
 	pid[2] = new PIDimp(new Servo(SERVO_3, 5), new AS5050(spi5, ENC_3),
 			new AnalogIn(LOAD_3));  // mosi, miso, sclk, cs
+	Servo * gripper = new Servo(GRIPPER_SERVO, 5);
 #endif
 
 	RunEveryObject * print = new RunEveryObject(0, 100);
@@ -136,6 +136,8 @@ int main() {
 	coms.attach(new PidServer(pid, DOFs));
 	coms.attach(new StatusServer(pid, DOFs));
 	coms.attach(new PidConfigServer(pid, DOFs));
+
+	coms.attach(new GripperServer(gripper));
 
 #ifdef DEBUG_
 	printf("\r\n\r\n Initialization complete. \r\n\r\n");
