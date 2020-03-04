@@ -18,7 +18,7 @@
 #include "Servo.h"
 #define GRIPPER_SERVER_ID 55      // identifier for this server
 
-#define CLOSED 0.2
+#define CLOSED 0.0
 #define OPEN 1
 /**
  *  @brief Class that receives setpoints through HID and sends them to
